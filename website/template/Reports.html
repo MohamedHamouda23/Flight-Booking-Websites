@@ -1,0 +1,383 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+<style>
+    button  {
+
+        padding: 10px;
+        background-color: #000080;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: #000080;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+      
+      }
+
+    .chart-container {
+        width: 75%;
+        max-width: 900px;
+        margin: 30px auto;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+
+    select,
+    input[type="number"] {
+        width: 100%;
+        max-width: 300px;
+        height: 40px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #dbdcdd;
+        font-size: 16px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+    }
+
+
+
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+
+
+    .rectangle-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 600px;
+        box-sizing: border-box;
+    }
+
+    table {
+        width: 90%;
+        max-width: 1000px;
+        border-collapse: collapse;
+        margin: 20px auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+        font-size: 0.9rem;
+    }
+
+    th {
+        background-color: #000080;
+        color: white;
+        font-weight: bold;
+    }
+
+    table tr {
+        background-color: #ffffff;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .chart-container {
+        width: 90%;
+        max-width: 900px;
+        margin: 30px auto;
+        position: relative;
+    }
+
+    @media (max-width: 768px) {
+
+        .rectangle-row {
+            padding: 15px;
+            width: 95%;
+        }
+
+
+        table {
+            width: 75%;
+            font-size: 0.8rem;
+        }
+
+        th,
+        td {
+            padding: 8px 5px;
+            font-size: 0.5rem;
+        }
+
+        .chart-container {
+            width: 95%;
+        }
+      
+    }
+
+
+    @media (max-width: 480px) {
+        .chart-container {
+            width: 98%;
+            padding: 5px;
+        }
+
+        th,
+        td {
+            padding: 4px;
+            font-size: 0.7rem;
+        }
+    }
+</style>
+
+<div class="admin_background">
+    <div class="booking_status">
+        <div class="Report_title">
+            <h1>Report generator</h1>
+        </div>
+
+        <div class="rectangle-row">
+            <form action="{{ url_for('Reports') }}" method="POST">
+                <label for="report_type">Type</label>
+                <select name="report_type" id="report" onchange="toggleJourneyInput()">
+                    <option value="" selected disabled>Select a report</option>
+                    <option value="Journey sales">Journey sales</option>
+                    <option value="top customers">Top Customers</option>
+                </select>
+
+                <div id="journeyInput" style="display: none;">
+                    <label for="Journey_ID">Journey ID</label>
+                    <input type="number" id="Journey_ID" name="Journey_ID" min="1" step="1">
+                </div>
+
+                <button id="control_button" type="submit">Generate</button>
+            </form>
+        </div>
+
+        {% if top %}
+        {% if top and top.data %}
+
+        <div style="overflow-x: auto;">
+            <table border="1">
+                <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>Average Expenses</th>
+                    <th>Total Bookings</th>
+                    <th>Cancelled Journeys</th>
+                    <th>Total Expenses</th>
+                </tr>
+                {% for customer in top.data %}
+                <tr>
+                    <td>{{ customer.user_ID }}</td>
+                    <td>{{ customer.full_name }}</td>
+                    <td>{{ customer.average_expenses }}</td>
+                    <td>{{ customer.total_bookings }}</td>
+                    <td>{{ customer.cancelled_journeys }}</td>
+                    <td>{{ customer.total_expenses }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="topUsersChart"></canvas>
+        </div>
+
+        <script id="top-users-data" type="application/json">
+                    {
+                        "labels": [{% for customer in top.data %}"{{ customer.full_name }}"{% if not loop.last %}, {% endif %}{% endfor %}],
+                        "expenses": [{% for customer in top.data %}{{ customer.total_expenses }}{% if not loop.last %}, {% endif %}{% endfor %}]
+                    }
+                </script>
+
+        <script>
+            const topUsersData = JSON.parse(document.getElementById('top-users-data').textContent);
+
+            const ctxTop = document.getElementById('topUsersChart').getContext('2d');
+            const topUsersChart = new Chart(ctxTop, {
+                type: 'bar',
+                data: {
+                    labels: topUsersData.labels,
+                    datasets: [{
+                        label: 'Total Expenses per User',
+                        data: topUsersData.expenses,
+                        backgroundColor: 'rgba(0, 0, 128, 0.6)',
+                        borderColor: 'rgba(0, 0, 128, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return '£' + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        {% elif error %}
+        <h2>{{ error }}</h2>
+        {% endif %}
+
+        {% elif sales %}
+
+        <div style="overflow-x: auto;">
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td>Journey ID</td>
+                    <td>{{ sales['Journey_ID'] }}</td>
+                </tr>
+                <tr>
+                    <td>Total Revenue</td>
+                    <td>${{ sales['Total Revenue'] }}</td>
+                </tr>
+                <tr>
+                    <td>Average Bookings</td>
+                    <td>${{ sales['Average Bookings'] }}</td>
+                </tr>
+                <tr>
+                    <td>Number of Bookings</td>
+                    <td>{{ sales['Bookings Numbers'] }}</td>
+                </tr>
+                <tr>
+                    <td>Number of Tickets</td>
+                    <td>{{ sales['Ticket Numbers'] }}</td>
+                </tr>
+                <tr>
+                    <td>Report Generated At</td>
+                    <td>{{ sales['Report Generated At'] }}</td>
+                </tr>
+                <tr>
+                    <td>Report By</td>
+                    <td>{{ sales['By'][0] }} {{ sales['By'][1] }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="salesChart"></canvas>
+        </div>
+
+        <script id="sales-data" type="application/json">
+                    {
+                        "revenue": {{ sales['Total Revenue'] | float }},
+                        "average": {{ sales['Average Bookings'] | float }},
+                        "bookings": {{ sales['Bookings Numbers'] | float }},
+                        "tickets": {{ sales['Ticket Numbers'] | float }}
+                    }
+                </script>
+
+        <script>
+            const salesData = JSON.parse(document.getElementById('sales-data').textContent);
+
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            const salesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Revenue', 'Average Bookings', 'Number of Bookings', 'Number of Tickets'],
+                    datasets: [{
+                        label: 'Sales Report Data',
+                        data: [
+                            salesData.revenue,
+                            salesData.average,
+                            salesData.bookings,
+                            salesData.tickets
+                        ],
+                        backgroundColor: [
+                            'rgba(0, 0, 128, 0.6)',
+                            'rgba(0, 128, 0, 0.6)',
+                            'rgba(255, 165, 0, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(0, 0, 128, 1)',
+                            'rgba(0, 128, 0, 1)',
+                            'rgba(255, 165, 0, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+
+        {% else %}
+        <h2>{{ error }}</h2>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    function toggleJourneyInput() {
+        var reportType = document.getElementById("report").value;
+        var journeyInput = document.getElementById("journeyInput");
+        var journeyIdField = document.getElementById("Journey_ID");
+
+        if (reportType === "Journey sales") {
+            journeyInput.style.display = "block";
+            journeyIdField.required = true;
+        } else {
+            journeyInput.style.display = "none";
+            journeyIdField.required = false;
+        }
+    }
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,121 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+<style>
+    .log_form {
+        position: absolute;
+        padding: 20px;
+        top: 50%;
+        left: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        transform: translate(-50%, -50%);
+        width: 85%;
+        max-width: 350px;
+        box-sizing: border-box;
+        border-radius: 8px;
+    }
+
+    .log_form .textbox input {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        padding: 0 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .log_form h1 {
+        font-size: 22px;
+        text-align: center;
+        font-family: "Foundry Icon", "ITC Pino", sans-serif;
+        font-weight: bold;
+        color: #000080;
+        margin-bottom: 20px;
+    }
+
+    .log_form input[type="submit"] {
+        width: 100%;
+        height: 40px;
+        background-color: #000080;
+        color: white;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .log_form p {
+        text-align: center;
+
+    }
+
+
+
+    @media only screen and (max-width: 480px) {
+        .log_form {
+            padding: 15px;
+            width: 90%;
+        }
+
+        .log_form h1 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .log_form .textbox input,
+        .log_form input[type="submit"] {
+            height: 38px;
+            font-size: 14px;
+        }
+
+
+    }
+
+    @media only screen and (max-width: 350px) {
+        .log_form {
+            padding: 12px;
+        }
+
+        .log_form h1 {
+            font-size: 18px;
+        }
+
+        .log_form p {
+            font-size: 13px;
+        }
+    }
+</style>
+
+
+
+
+<div class="log_background">
+    <div class="log_form">
+        <form action="{{ url_for('log_in') }}" method="post">
+            <h1>Horizon travel<br><br> </h1>
+
+            <div class="textbox">
+                <input type="text" placeholder="Enter your email address" name="email" required>
+            </div>
+            <br><br>
+            <div class="textbox">
+                <input type="password" placeholder="Password" name="password" required minlength="8" maxlength="20"
+                    required>
+            </div>
+            <br><br>
+            <input type="submit" class="btn" value="Log In">
+            <br><br>
+            <p>Don't have an account? <a href="{{ url_for('sign') }}">Sign Up</a></p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}

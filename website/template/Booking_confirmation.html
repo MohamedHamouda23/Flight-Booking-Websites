@@ -1,0 +1,57 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+<style>
+    .conformation {
+        top: 40%
+    }
+
+    .conformation-title a {
+        text-decoration: none;
+        color: #f8f8f8;
+        background-color: #000080;
+        padding: 10px;
+    }
+
+    .conformation-title a:hover {
+        background-color: #010172;
+
+    }
+</style>
+
+
+
+
+<div class="booking-background">
+    <div class="conformation">
+        <div class="booking-title">
+            <div class="conformation-title">
+                <h1>Your Booking is Confirmed!</h1>
+                <p>Thank you for booking with us. Your booking has been successfully completed.</p>
+                <p>Generate your ticket from my account.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    window.onload = function () {
+        var downloadLink = document.getElementById('download-link');
+        downloadLink.click();  
+    };
+</script>
+
+
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}

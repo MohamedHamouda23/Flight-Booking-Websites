@@ -1,0 +1,239 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+<style>
+  button  {
+
+    padding: 10px;
+    background-color: #000080;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: #000080;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  
+  }
+  
+
+
+  h2 {
+    color: white;
+    padding: 20px;
+    background: #000080;
+    display: inline-block;
+    font-size: 1.5rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  input[type="text"] {
+    height: 40px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #dbdcdd;
+    width: 200px;
+  }
+
+  .rectangle-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    margin-bottom: 170px;
+    border-radius: 8px;
+  }
+
+  .responsive-table {
+    width: 100%;
+    margin-bottom: 150px;
+    border-collapse: collapse;
+    background-color: white;
+  }
+
+  .responsive-table th,
+  .responsive-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .responsive-table th {
+    background-color: #000080;
+    color: white;
+    font-weight: bold;
+  }
+
+  .responsive-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .responsive-table tr:hover {
+    background-color: #ddd;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+
+
+    form {
+      flex-direction: column;
+    }
+
+
+    input[type="text"] {
+      width: 100%;
+    }
+
+    .rectangle-row {
+      padding: 15px;
+      margin-bottom: 100px;
+    }
+
+    .responsive-table {
+      border: 0;
+      background-color: transparent;
+    }
+
+    .responsive-table thead {
+      display: none;
+    }
+
+    .responsive-table tr {
+      display: block;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .responsive-table td {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 15px;
+      text-align: right;
+      border-bottom: 1px solid #eee;
+    }
+
+    .responsive-table td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      color: #000080;
+      text-align: left;
+      margin-right: 15px;
+      flex: 1;
+    }
+
+    .responsive-table td span {
+      flex: 1;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .responsive-table td:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+
+
+    .rectangle-row {
+      margin-bottom: 80px;
+      width: 90%;
+    }
+
+    #booking_id {
+      width: 90%;
+
+    }
+
+    .responsive-table {
+      margin-bottom: 100px;
+    }
+
+    .responsive-table td {
+      padding: 10px 12px;
+      flex-direction: column;
+    }
+
+    .responsive-table td::before {
+      margin-right: 0;
+      margin-bottom: 5px;
+    }
+
+    .responsive-table td span {
+      text-align: left;
+    }
+  }
+</style>
+
+
+<div class="admin_background">
+  <div class="booking_status">
+    <div class="status_title">
+      <h1>Bookings Status</h1>
+    </div>
+
+    <div class="rectangle-row">
+      <form action="{{ url_for('bookings') }}" method="POST">
+        <label for="booking_id">Enter Booking ID:</label>
+        <input type="number" id="booking_id" name="booking_id" required min="1" step="1">
+        <button type="submit" id="control_button">Search</button>
+      </form>
+    </div>
+
+    {% if booking %}
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>User ID</th>
+          <th>Departure City</th>
+          <th>Destination City</th>
+          <th>Departure Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Booking ID"><span>{{ booking.booking_ID }}</span></td>
+          <td data-label="User ID"><span>{{ booking.user_ID }}</span></td>
+          <td data-label="Departure City"><span>{{ booking.departure_city }}</span></td>
+          <td data-label="Destination City"><span>{{ booking.destination_city }}</span></td>
+          <td data-label="Departure Date"><span>{{ booking.departure_date }}</span></td>
+          <td data-label="Status"><span>{{ booking.booking_status }}</span></td>
+        </tr>
+      </tbody>
+    </table>
+    {% elif error %}
+    <h2>{{ error }}</h2>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}

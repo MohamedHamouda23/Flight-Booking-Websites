@@ -1,0 +1,404 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+{% extends "base.html" %}
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<style>
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  label:not([for="booked_seats"]) {
+    flex: 1 1 250px;
+  }
+
+  label[for="booked_seats"] {
+    flex: 0 1 250px;
+    margin-right: 0;
+  }
+
+  .button {
+    flex: 0 0 250px;
+    margin: 0;
+    padding-top: 15px;
+    align-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .book-button {
+    font-size: 16px;
+    background-color: #000080;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 38px;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  .book-button:hover {
+    background-color: #0000a0;
+  }
+
+  .flatpickr-calendar {
+    width: 100% !important;
+    max-width: 320px !important;
+    font-size: 14px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .flatpickr-innerContainer {
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .flatpickr-rContainer {
+    width: 100% !important;
+  }
+
+  .flatpickr-days {
+    width: 100% !important;
+  }
+
+  .dayContainer {
+    min-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .flatpickr-day.nextMonthDay,
+  .flatpickr-day.prevMonthDay {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .flatpickr-day {
+    height: 35px;
+    line-height: 35px;
+    max-width: 35px;
+    margin: 2px;
+    font-size: 14px;
+    border-radius: 4px;
+    flex: 1 0 calc(14.28% - 4px);
+  }
+
+  .flatpickr-day.selected,
+  .flatpickr-day:hover {
+    background: #000080;
+    border-color: #000080;
+  }
+
+  .flatpickr-day.disabled {
+    background: #f5f5f5;
+    color: #ccc;
+    cursor: not-allowed;
+  }
+
+
+
+  select,
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    height: 38px;
+  }
+
+  .flatpickr-input {
+    background-color: white;
+    cursor: pointer;
+  }
+
+  .flatpickr-input:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+
+
+
+  @media only screen and (max-width: 768px) {
+
+
+    .flatpickr-calendar {
+      max-width: 280px !important;
+    }
+
+
+    .flatpickr-day {
+      height: 30px;
+      line-height: 30px;
+      max-width: 30px;
+      margin: 1px;
+      font-size: 13px;
+    }
+  }
+
+  @media only screen and (max-width: 610px) {
+
+
+    
+    label[for="booked_seats"],
+    .button {
+      flex: 1 1 100%;
+    }
+
+
+
+    .flatpickr-calendar {
+      max-width: 260px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+  }
+
+  @media only screen and (max-width: 360px) {
+    .flatpickr-calendar {
+      max-width: 240px !important;
+    }
+
+    .flatpickr-day {
+      height: 28px;
+      line-height: 28px;
+      max-width: 28px;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<div class="Home_background">
+  <div class="intro_text">
+    <p class="large_text">Book your flight today for a smooth</p>
+    <p class="large_text">journey to your next destination</p>
+    <p class="sub_text">Fly in comfort and style</p>
+  </div>
+
+  <form action="{{ url_for('home') }}" method="post">
+    <div class="form-row">
+      <label for="departure">From
+        <select id="departure" name="departure" required>
+          <option value="" selected disabled>Select a City</option>
+          {% for city in available_cities %}
+          <option value="{{ city }}">{{ city }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <label for="destination">To
+        <select name="destination" id="destination" required disabled>
+          <option value="" selected disabled>Select Departure First</option>
+          {% if departure %}
+          {% for route in route_pairs %}
+          {% if route[0] == departure %}
+          <option value="{{ route[1] }}">{{ route[1] }}</option>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+        </select>
+      </label>
+
+      <label for="Type">Class
+        <select name="Type" id="Type" required>
+          <option value="" selected disabled>Choose Class</option>
+          <option value="Business">Business</option>
+          <option value="Economy">Economy</option>
+        </select>
+      </label>
+
+      <label for="departure_date">Date
+        <input type="text" id="departure_date" name="departure_date" class="flatpickr-input" placeholder="Select a date"
+          disabled required>
+      </label>
+
+      <label for="booked_seats">Seats
+        <input type="number" id="booked_seats" name="booked_seats" value="{{ booked_seats if booked_seats else '1' }}"
+          min="1" required>
+      </label>
+
+      <div class="button">
+        <input type="submit" class="book-button" value="Search">
+      </div>
+    </div>
+  </form>
+
+  {% if error_message %}
+  <div id="error-box">
+    <button onclick="closeErrorBox()">X</button>
+    <p>{{ error_message }}</p>
+  </div>
+  {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const departureSelect = document.getElementById('departure');
+    const destinationSelect = document.getElementById('destination');
+    const dateInput = document.getElementById('departure_date');
+    let flatpickrInstance = null;
+
+    dateInput.disabled = true;
+
+    const routePairsData = JSON.parse('{{ route_pairs | tojson | safe if route_pairs else "[]" }}');
+    const availableDatesData = JSON.parse('{{ available_dates | tojson | safe if available_dates else "{}" }}');
+
+    departureSelect.addEventListener('change', function () {
+      updateDestinations(this.value);
+      dateInput.disabled = true;
+      if (flatpickrInstance) {
+        flatpickrInstance.clear();
+        flatpickrInstance.destroy();
+        flatpickrInstance = null;
+      }
+    });
+
+    destinationSelect.addEventListener('change', function () {
+      if (this.value && departureSelect.value) {
+        dateInput.disabled = false;
+        updateDates(departureSelect.value, this.value);
+      } else {
+        dateInput.disabled = true;
+        if (flatpickrInstance) {
+          flatpickrInstance.clear();
+          flatpickrInstance.destroy();
+          flatpickrInstance = null;
+        }
+      }
+    });
+
+    function updateDestinations(selectedDeparture) {
+      destinationSelect.innerHTML = '<option value="" selected disabled>Select Destination</option>';
+      destinationSelect.disabled = true;
+
+      if (!selectedDeparture) return;
+
+      try {
+        const destinations = routePairsData
+          .filter(route => route && route[0] === selectedDeparture)
+          .map(route => route[1])
+          .filter(Boolean);
+
+        if (destinations.length) {
+          destinations.forEach(dest => {
+            const option = document.createElement('option');
+            option.value = dest;
+            option.textContent = dest;
+            destinationSelect.appendChild(option);
+          });
+          destinationSelect.disabled = false;
+        }
+      } catch (e) {
+        console.error('Error updating destinations:', e);
+      }
+    }
+
+    function updateDates(departure, destination) {
+      if (flatpickrInstance) {
+        flatpickrInstance.clear();
+        flatpickrInstance.destroy();
+        flatpickrInstance = null;
+      }
+
+      if (!departure || !destination) return;
+
+      try {
+        const routeKey = `${departure}-${destination}`;
+        const availableDates = availableDatesData[routeKey] || [];
+
+        const filteredDates = availableDates.filter(dateStr => {
+          try {
+            if (!dateStr) return false;
+            const day = parseInt(dateStr.split('-')[2]);
+            return !isNaN(day) && day <= 31;
+          } catch {
+            return false;
+          }
+        });
+
+        if (filteredDates.length) {
+          flatpickrInstance = flatpickr(dateInput, {
+            minDate: filteredDates[0],
+            maxDate: filteredDates[filteredDates.length - 1],
+            enable: filteredDates,
+            dateFormat: "Y-m-d",
+            showMonths: 1,
+            disable: [
+              function (date) {
+                try {
+                  const dateStr = flatpickr.formatDate(date, "Y-m-d");
+                  return !filteredDates.includes(dateStr);
+                } catch {
+                  return true;
+                }
+              }
+            ],
+            onReady: function (selectedDates, dateStr, instance) {
+              const disabledDays = instance.calendarContainer.querySelectorAll('.flatpickr-day.disabled');
+              disabledDays.forEach(day => {
+                day.style.backgroundColor = '#f5f5f5';
+                day.style.color = '#ccc';
+              });
+
+              const calendar = instance.calendarContainer;
+              calendar.style.width = '100%';
+              const daysContainer = calendar.querySelector('.dayContainer');
+              if (daysContainer) {
+                daysContainer.style.minWidth = '100%';
+                daysContainer.style.width = '100%';
+              }
+            },
+            onChange: function (selectedDates, dateStr, instance) {
+              if (dateStr && !filteredDates.includes(dateStr)) {
+                instance.clear();
+              }
+            }
+          });
+        }
+      } catch (e) {
+        console.error('Error updating dates:', e);
+      }
+    }
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+      destinationSelect.disabled = false;
+      dateInput.disabled = false;
+
+      const requiredFields = form.querySelectorAll('[required]');
+      let isValid = true;
+
+      requiredFields.forEach(field => {
+        if (!field.value) {
+          isValid = false;
+          field.style.borderColor = '#f44336';
+        } else {
+          field.style.borderColor = '#ddd';
+        }
+      });
+
+      if (!isValid) {
+        event.preventDefault();
+      }
+    });
+  });
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}
