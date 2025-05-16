@@ -115,10 +115,9 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 
 
-## Database Setup
 
 
-# 🗃️ Database Setup
+## 🗃️ Database Setup
 
 # 🧱 First: Create the 'Horizon_travel' database if it doesn't exist
 # 📥 Second: Import the SQL file into the 'Horizon_travel' database
