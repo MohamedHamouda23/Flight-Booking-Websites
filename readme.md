@@ -1,5 +1,3 @@
-# Name: Mohamed Hammouda | Student ID: 23077543
-
 # ✈️ Horizon Travel | Air Booking System
 
 
