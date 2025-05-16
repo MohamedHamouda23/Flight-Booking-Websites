@@ -70,6 +70,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 🛡️ Cross-Site Scripting (XSS) Prevention: All user input is sanitized and validated to prevent malicious scripts from being executed in the browser. This ensures that users cannot inject harmful JavaScript into the system, protecting both customer and admin data.
 ------
 🔑 Session Management: Secure session handling using tokens to prevent unauthorized access, with automatic expiration after a set time or inactivity period.
+------
 
 
 # 💻 Technology
