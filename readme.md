@@ -100,7 +100,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 <br>
 <br>
 
-### 🛠️ System Requirements
+# 🛠️ System Requirements
 
 🐍 Python 3.10.5+ (with pip3) <br>
 🗄️ MySQL Server
@@ -108,24 +108,25 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 <br>
 <br>
 
-### 📸 Screenshots
 
-## 🏠 Home page
+# 📸 Screenshots
+
+### 🏠 Home page
 ![Home Screen](website/assets/Home.png)
 
-## 👤 Account page
+### 👤 Account page
 ![Account Screen](website/assets/Account.png)
 
-## 📅 Availability page on phone screen
+### 📅 Availability page on phone screen
 ![Availability Screen](website/assets/Availability.png)
 
-## 🛎️ Booking page
+### 🛎️ Booking page
 ![Booking Screen](website/assets/Booking.png)
 
-## ⚙️ Control page
+### ⚙️ Control page
 ![Control Screen](website/assets/Control.png)
 
-## 📝 Register page
+### 📝 Register page
 ![Register Screen](website/assets/Register.png)
 
 
@@ -134,25 +135,25 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 # 🗃️ Database Setup
 
-# 🧱 First: Create the 'Horizon_travel' database if it doesn't exist
-# 📥 Second: Import the SQL file into the 'Horizon_travel' database
+### <br>🧱 First: Create the 'Horizon_travel' database if it doesn't exist
+### 📥 Second: Import the SQL file into the 'Horizon_travel' database
 
 
-**🍎macOS**
+**<br>🍎macOS**
 
 
 /usr/local/mysql/bin/mysql -u Username -p -e "CREATE DATABASE IF NOT EXISTS \`Horizon_travel\`;"
 
 /usr/local/mysql/bin/mysql -u Username -p Horizon_travel < horizon_travel.sql
 
-**🪟Windows**
+**<br>🪟Windows**
 
 "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql" -u Username -p -e "CREATE DATABASE IF NOT EXISTS `Horizon_travel`;"
 
 "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql" -u Username -p Horizon_travel < horizon_travel.sql
 
 
-**🐧Linux** 
+**<br>🐧Linux** 
 
 /usr/bin/mysql -u Username -p -e "CREATE DATABASE IF NOT EXISTS \`Horizon_travel\`;"
 
