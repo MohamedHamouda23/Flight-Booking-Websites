@@ -114,9 +114,6 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 
 
-
-
-
 ## 🗃️ Database Setup
 
 # 🧱 First: Create the 'Horizon_travel' database if it doesn't exist
