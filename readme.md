@@ -26,7 +26,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 🔍 Show available flight routes based on user search (departure, destination, date).
 🔄 Allow users to change departure, destination, and date.
-------
+
 💺 Seat Selection & Availability:
 
 🎫 Let users choose between Economy and Business class.
