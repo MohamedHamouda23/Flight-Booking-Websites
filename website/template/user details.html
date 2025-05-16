@@ -1,0 +1,525 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+<style>
+    button {
+        padding: 10px;
+        background-color: #000080;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: #000080;
+        justify-content: center;
+        align-items: center;
+    }
+
+    select,
+    input {
+        width: 100%;
+        max-width: 400px;
+        height: 40px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #dbdcdd;
+        font-size: 16px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        font-weight: bold;
+        color: #333;
+    }
+
+    select {
+        background-color: white;
+        appearance: none;
+        background-size: 1em;
+        line-height: 40px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .rectangle-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 800px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+        padding: 12px 8px;
+        text-align: center;
+        border: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    th {
+        background-color: #000080;
+        color: white;
+        font-weight: bold;
+    }
+
+    table tr {
+        background-color: #ffffff;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:last-child {
+        border-bottom: none;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .user-table-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .user-table {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+
+    .user-table form {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .user-table tr:last-child td {
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .user-table tr:last-child td button {
+        width: auto;
+        min-width: 150px;
+        margin: 0 auto;
+    }
+
+    .update-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .update-button {
+        background-color: #000080;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin: 5px 0;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .delete-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .value-input {
+        width: 100%;
+        max-width: 200px;
+        padding: 8px;
+        box-sizing: border-box;
+        height: 40px;
+        border: 1px solid #dbdcdd;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    select.value-input {
+        width: 100%;
+        height: 40px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #dbdcdd;
+        font-size: 16px;
+        box-sizing: border-box;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .delete-button {
+        background-color: #d9534f;
+    }
+
+    .delete-button:hover {
+        background-color: #c9302c;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .rectangle-row {
+            width: 95%;
+            padding: 15px;
+            max-width: 700px;
+        }
+
+        table {
+            font-size: 12px;
+        }
+
+        th,
+        td {
+            padding: 10px 6px;
+        }
+
+        .value-input,
+        select.value-input {
+            max-width: 180px;
+            font-size: 14px;
+            height: 36px;
+            padding: 6px;
+        }
+
+        button,
+        .update-button,
+        .delete-button {
+            width: 120px;
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .user-table tr:last-child td button {
+            min-width: 120px;
+        }
+
+        .user-table-container .user-table[width="100"] {
+            width: 80%;
+            min-width: 400px;
+        }
+
+        select,
+        input {
+            max-width: 350px;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+
+        select,
+        input {
+            height: 36px;
+            font-size: 14px;
+            max-width: 250px;
+            line-height: 36px;
+        }
+
+        select option {
+            padding: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .user-table {
+            width: 100%;
+        }
+
+        .update-button,
+        .delete-button {
+            padding: 6px;
+            font-size: 13px;
+            width: 90px;
+        }
+
+        .value-input,
+        select.value-input {
+            max-width: 140px;
+            height: 34px;
+            font-size: 13px;
+            padding: 5px;
+        }
+
+        .rectangle-row {
+            padding: 10px;
+            width: 98%;
+        }
+
+        .user-table tr:last-child td button {
+            min-width: 110px;
+            padding: 8px 15px;
+        }
+
+        .user-table-container .user-table[width="100"] {
+            width: 95%;
+            min-width: 300px;
+        }
+    }
+
+    @media only screen and (max-width: 380px) {
+        .rectangle-row {
+            padding: 8px;
+        }
+
+        table {
+            font-size: 11px;
+        }
+
+        th,
+        td {
+            padding: 8px 4px;
+        }
+
+        .value-input,
+        select.value-input {
+            max-width: 120px;
+            height: 30px;
+            padding: 4px;
+        }
+
+        .user-table tr:last-child td button {
+            min-width: 100px;
+            padding: 6px 12px;
+        }
+
+        select,
+        input {
+            max-width: 200px;
+        }
+    }
+</style>
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+
+<div class="admin_background">
+    <div class="booking_status">
+        <div class="Report_title">
+            <h1>User Management</h1>
+        </div>
+
+        <div class="rectangle-row">
+            <form action="{{ url_for('users_control') }}" method="POST">
+                <label for="option_type">Type</label>
+                <select name="option_type" id="option" onchange="toggleJourneyInput()">
+                    <option value="" selected disabled>Select an option</option>
+                    <option value="Modify User Details">Modify User Details</option>
+                    <option value="Add users">Add users</option>
+                </select>
+
+                <div id="userInput">
+                    <label for="userID">User ID</label>
+                    <input type="number" id="userID" name="userID" min="1" step="1">
+                </div>
+
+                <button id="control_button" style="width: 50%;" type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div>
+            {% if notFound %}
+            <h2 style="color: white;">{{ notFound }}</h2>
+
+            {% elif session.get('userForAdmin') %}
+            <div class="user-table-container">
+                <table class="user-table" border="1">
+                    <tr>
+                        <th>Category</th>
+                        <th>Details</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <form action="/update_user" method="post">
+                        {% for field, value in session['userForAdmin'].items() %}
+                        <tr>
+                            <td>{{ field }}</td>
+                            <td>{{ value }}</td>
+
+                            {% if field == 'user_ID' %}
+                            <td>
+                                <input type="hidden" name="fields[user_ID]" value="{{ value }}">
+                                <button type="submit" class="update-button">Update</button>
+                            </td>
+                            {% elif field == 'Role' %}
+                            <td>
+                                <select name="fields[role]" class="value-input">
+                                    <option value="" disabled>Select role</option>
+                                    <option value="Customer">Customer</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </td>
+                            {% elif field in ['First name', 'Last name'] %}
+                            <td>
+                                <input type="text" name="fields[{{ field }}]" placeholder="New Value"
+                                    class="value-input" value="{{ value }}" minlength="3" pattern="[A-Za-z]+"
+                                    title="Letters only">
+                            </td>
+                            {% elif field == 'phone number' %}
+                            <td>
+                                <input type="tel" name="fields[{{ field }}]" placeholder="New Value" class="value-input"
+                                    value="{{ value }}" pattern="07[0-9]{9}"
+                                    title="Enter a valid UK mobile number starting with 07 ">
+                            </td>
+                            {% elif field == 'Email' %}
+                            <td>
+                                <input type="email" name="fields[{{ field }}]" placeholder="New Value"
+                                    class="value-input" value="{{ value }}"
+                                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Valid email">
+                            </td>
+                            {% elif field == 'Password' %}
+                            <td>
+                                <input type="password" name="fields[{{ field }}]" placeholder="New Password"
+                                    class="value-input" min="8" max="20"
+                                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\W_]{8,20}$"
+                                    title="8-20 chars with letters and numbers">
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </form>
+
+                    <tr>
+                        <td colspan="3">
+                            <form action="/delete_user" method="post" class="delete-form">
+                                <input type="hidden" name="user_ID"
+                                    value="{{ session['userForAdmin'].get('user_ID') }}">
+                                <button type="submit" class="delete-button">Delete User</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            {% elif option_type == "Add users" %}
+            <div class="user-table-container">
+                <table class="user-table">
+                    <tr>
+                        <th>Category</th>
+                        <th>Details</th>
+                    </tr>
+                    <form action="/add_user" method="post">
+                        <tr>
+                            <td>First Name</td>
+                            <td><input type="text" name="first_name" required pattern="[A-Za-z]+" title="Letters only"
+                                    class="value-input"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Last Name</td>
+                            <td><input type="text" name="last_name" required pattern="[A-Za-z]+" title="Letters only"
+                                    class="value-input"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="email" name="email" required class="value-input"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Phone Number</td>
+                            <td><input type="tel" name="phone_number" required pattern="07[0-9]{9}"
+                                 title="Enter a valid UK mobile number starting with 07 " class="value-input"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Password</td>
+                            <td><input type="password" name="password" required  min="8" max="20"
+                                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\W_]{8,20}$"
+                                    title="8-20 chars with letters and numbers" class="value-input"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Role</td>
+                            <td>
+                                <select name="role" required class="value-input">
+                                    <option value="" selected disabled>Select role</option>
+                                    <option value="Customer">Customer</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit">Add User</button>
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </div>
+
+            {% else %}
+            <h2 style>{{ error }}</h2>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if error_message %}
+    <div id="error-box">
+        <button onclick="closeErrorBox()">X</button>
+        <p>{{ error_message }}</p>
+    </div>
+    {% endif %}
+
+    <script>
+        function toggleJourneyInput() {
+            var option = document.getElementById("option").value;
+            var userInput = document.getElementById("userInput");
+            var userIdField = document.getElementById("userID");
+
+            if (option === "Modify User Details") {
+                userInput.style.display = "block";
+                userIdField.required = true;
+            } else {
+                userInput.style.display = "none";
+                userIdField.required = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            toggleJourneyInput();
+            const notFoundMessage = "{{ notFound }}";
+            if (notFoundMessage && notFoundMessage.trim() !== "") {
+                document.getElementById("option").value = "Modify User Details";
+                toggleJourneyInput();
+            }
+        });
+    </script>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}

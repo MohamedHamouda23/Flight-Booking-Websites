@@ -1,0 +1,126 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+<style>
+    .textbox {
+        margin-bottom: 40px; 
+    }
+</style>
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+
+<div class="payment-background">
+    <div class="payment-form">
+        <form action="{{ url_for('payment') }}" method="post" onsubmit="return validateExpiryDate()">
+            <h1>
+                {% if refund and refund > 0 %}
+                    Refund Details
+                {% else %}
+                    Payment Details
+                {% endif %}
+            </h1>
+
+            <!-- Amount display -->
+            {% if selected_journey or additional_payment or refund %}
+                <div class="amount-display">
+                    {% if selected_journey %}
+                        <div class="textbox">
+                            <input type="text" 
+                                   value="{{ selected_journey[12] }} £" 
+                                   name="total_amount" 
+                                   required 
+                                   disabled>
+                        </div>
+                    {% elif additional_payment %}
+                        <div class="textbox highlight-payment">
+                            <input type="text" 
+                                   value="{{ additional_payment }} £ (Additional Payment)" 
+                                   name="total_amount" 
+                                   required 
+                                   disabled>
+                        </div>
+                    {% elif refund %}
+                        <div class="textbox highlight-refund">
+                            <input type="text" 
+                                   value="{{ refund }} £ (Refund)" 
+                                   name="total_amount" 
+                                   required 
+                                   disabled>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if selected_journey %}
+                <input type="hidden" name="real_amount" value="{{ selected_journey[12] }}">
+            {% elif additional_payment %}
+                <input type="hidden" name="real_amount" value="{{ additional_payment }}">
+            {% elif refund %}
+                <input type="hidden" name="real_amount" value="{{ refund }}">
+            {% endif %}
+
+            <div class="textbox">
+                <input type="text" placeholder="Card Number" name="card_number" minlength="19" maxlength="19"
+                    required pattern="\d{4} \d{4} \d{4} \d{4}"
+                    title="Enter a card number in the format: 1234 5678 9012 3456"
+                    value="{{ request.form.card_number if request.form.card_number }}">
+            </div>
+            <div class="textbox">
+                <input type="text" name="expiration_date" id="expiration_date" placeholder="MM/YY" required
+                    title="Enter the expiration date in MM/YY format"
+                    value="{{ request.form.expiration_date if request.form.expiration_date }}">
+            </div>
+            <div class="textbox">
+                <input type="text" placeholder="CVV Code" name="cvv_code" minlength="3" maxlength="3" required
+                    pattern="\d{3}" title="Enter a 3-digit CVV code"
+                    value="{{ request.form.cvv_code if request.form.cvv_code }}">
+            </div>
+            <button class="pay-button" type="submit">Pay</button>
+        </form>
+
+        {% if error_message %}
+            <div id="error-box">
+                <button onclick="closeErrorBox()">X</button>
+                <p>{{ error_message }}</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+
+    <script>
+        function validateExpiryDate() {
+            const expiryInput = document.getElementById("expiration_date").value.trim();
+            const regex = /^(0[1-9]|1[0-2])\/(\d{2})$/;
+        
+            if (!regex.test(expiryInput)) {
+                showError("Invalid date format. Please use MM/YY.");
+                return false;
+            }
+        
+            const [monthStr, yearStr] = expiryInput.split("/");
+            const inputMonth = parseInt(monthStr, 10);
+            const inputYear = parseInt("20" + yearStr, 10); 
+        
+            const today = new Date();
+            const currentMonth = today.getMonth() + 1; 
+            const currentYear = today.getFullYear();
+        
+            if (inputYear < currentYear || (inputYear === currentYear && inputMonth < currentMonth)) {
+                showError("The card has expired");
+                return false;
+            }
+        
+            return true;
+        }
+        </script>
+        
+    
+
+{% endblock %}
