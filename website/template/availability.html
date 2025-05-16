@@ -1,0 +1,93 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+<style>
+    .booking-title {
+        margin-top: -60px;
+    }
+</style>
+
+
+
+<div class="booking-background">
+
+    <div class="flights">
+
+        <div class="booking-title">
+            <h1>
+                Available Flights
+            </h1>
+        </div>
+
+
+
+        {% if session.get('matching_journeys') and matching_journeys %}
+        <form class="booking-flights" action="{{ url_for('availability') }}" method="POST">
+            {% for journey in matching_journeys %}
+            <div class="selected_journey">
+                <input type="radio" id="journey-{{ journey[0] }}" name="journey_id" value="{{ journey[0] }}" required>
+                <label for="journey-{{ journey[0] }}">
+                    Company ({{ journey[1] }}) {{ journey[2] }} to {{ journey[3] }}
+                    ({{ journey[6] }} - {{ journey[7] }})
+                </label>
+            </div>
+            {% endfor %}
+            <div class="booking_btn">
+                <input class="flight_btn" type="submit" value="Next">
+            </div>
+        </form>
+        {% endif %}
+
+        {% if all_user_updates %}
+        <form class="booking-flights" action="{{ url_for('confirm_update') }}" method="POST">
+            {% for journey in all_user_updates %}
+            <div class="selected_journey">
+                <input type="radio" id="journey-{{ journey['Journey_ID'] }}" name="journey_id"
+                    value="{{ journey['Journey_ID'] }}" required>
+                <label for="journey-{{ journey['Journey_ID'] }}">
+                    Company: {{ journey['Travel_Company'] }} |
+                    {{ journey['departure_city'] }} to {{ journey['destination_city'] }}
+                    ({{ journey['departure_time'] }} - {{ journey['arrival_time'] }})
+                    {% if refund %}
+                    <p style="color: green;">You will be refunded: £{{ refund }}</p>
+                    {% endif %}
+
+                    {% if additional_payment %}
+                    <p style="color: green;">You will pay: £{{ additional_payment }}</p>
+                    {% endif %}
+
+
+                </label>
+            </div>
+            {% endfor %}
+            <div class="booking_btn">
+                <input class="flight_btn" type="submit" value="Update">
+            </div>
+        </form>
+        {% endif %}
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}

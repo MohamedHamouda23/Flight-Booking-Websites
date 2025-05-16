@@ -1,0 +1,147 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+
+       
+    <div class="container">
+
+        <p class="title">About us</p>
+    
+        <p class="content">With Horizon Travel, premium air travel is now more accessible and affordable than ever before.
+        Offering unparalleled comfort and essential travel services, all conveniently booked at the click of a button, exploring new horizons has never been so effortless.<br><br>
+        At Horizon Travel, we are committed to providing our passengers with the most up-to-date flight options and secure, high-quality services to ensure every journey is seamless, stress-free, and tailored to your needs.
+        Our carefully curated flight routes are designed with you in mind, connecting you to major cities and hidden gems across the globe.<br><br>
+        Whether traveling for business or leisure, our flights strike the perfect balance between convenience and tranquility, ensuring you enjoy both the bustling excitement of your destination and the peace of a smooth, comfortable journey.</p>
+    
+  
+    <br><hr><br>
+    
+    <p class="title">Advance Booking</p>
+    
+    <p class="content">Flights can be booked up to three months in advance, which is when discounts should be applied:</p>
+    
+    <table>
+        <tr>
+            <th>Booked advance days</th>
+            <th>Discount</th>
+        </tr>
+        <tr>
+            <td>Between 80 and 90 days</td>
+            <td>25%</td>
+        </tr>
+        <tr>
+            <td>Between 60 and 79 days</td>
+            <td>15%</td>
+        </tr>
+        <tr>
+            <td>Between 45 and 59 days</td>
+            <td>10%</td>
+        </tr>
+        <tr>
+            <td>Under 45 days</td>
+            <td>No discount</td>
+        </tr>
+    </table>
+    
+    <br><hr><br>
+    
+    <p class="title">Booking Cancellation</p>
+    
+    <p class="content">Cancellations can be made up to a specified period in advance, with charges applied depending on the timing, as showed in the table:</p>
+    
+    <table>
+        <tr>
+            <th>Number of days before the plane</th>
+            <th>Cancellation charge</th>
+        </tr>
+        <tr>
+            <td>Beyond 60 days of booking</td>
+            <td>No charges</td>
+        </tr>
+        <tr>
+            <td>Between 30 and 60 days</td>
+            <td>40%</td>
+        </tr>
+        <tr>
+            <td>Within 30 days</td>
+            <td>100%</td>
+        </tr>
+    </table>
+    
+    <br><hr><br>
+    
+    <p class="title">Flights</p>
+    
+    <p class="content">Our company offers two types of flight classes, each with different capacities and pricing, as displayed in the following table:</p>
+    
+    <table>
+        <tr>
+            <th>Flight class</th>
+            <th>Passenger capacity</th>
+            <th>Charges</th>
+        </tr>
+        <tr>
+            <td>Business</td>
+            <td>26 passengers</td>
+            <td>Standard * 2</td>
+        </tr>
+        <tr>
+            <td>Economy</td>
+            <td>104 passengers</td>
+            <td>Standard Price</td>
+        </tr>
+    </table>
+    
+    <br><hr><br>
+    
+    <p class="title">Privacy Policy</p>
+    
+    <p class="content">By registering an account with Horizon Travel you are agreeing to the collection and use of your data. A full description of how we collect and use your data, as well as how you can access it has been provided below.</p>
+    
+    <br><br>
+
+    <div class="privacy">
+        <p class="title">What Personal Data Is Collected?</p>
+        <p class="content">Information about you is collected during the registration and payment processes. E.g. Details you have entered such as your name, email address, card details, etc.</p>      
+        <br><br>
+        <p class="title">How Is Your Data Used?</p>
+        <p class="content">The collected information is used for the following purposes:<br><br>
+            - To facilitate the registration and management of your account<br>
+            - To process payment transactions for bookings<br>
+            - To ensure communication and respond to any queries or requests<br>
+        </p>
+
+
+        <br><br>
+        <p class="title">How Can Access to Your Data Be Obtained?</p>
+        <p class="content">Access to your personal data, as well as requests for its correction or deletion, can be made on your account. <br> Your legal right to obtain a copy of your information is respected.</p>
+
+        <br><br>
+        <p class="title">Where Is Your Information Stored, and How Long Is It Retained?</p>
+        <p class="content">Your information is securely stored in our databases and retained only for as long as it is necessary to fulfill the requested services.</p>
+
+        <br><br>
+        <p class="title">How do we protect your data?</p>
+        <p class="content">Sensitive personal information is securely stored in our protected databases. Data that doesn't need to be retained, such as bank card numbers, is processed once and not stored. Additionally, passwords are hashed, making them secure and preventing theft or reuse, thus further safeguarding your account and personal information from unauthorized access.</p>
+            
+            
+
+    </div>
+    
+
+        
+</div>
+    
+    
+
+    
+    
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}

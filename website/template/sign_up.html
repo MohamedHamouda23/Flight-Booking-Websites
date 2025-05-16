@@ -1,0 +1,120 @@
+<!-- Name: Mohamed Hammouda | Student ID: 23077543 -->
+
+{% extends "base.html" %}
+
+{% block title %}Home - Horizon Travel{% endblock %}
+
+{% block content %}
+<style>
+  
+
+  .textbox input {
+    width: 100%;
+    margin: 0;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  #btn {
+    width: 50%;
+    padding: 10px;
+    background-color: #000080;
+    color: white;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+
+<div class="sign_background">
+  <div class="sign_form">
+    <form action="{{ url_for('sign') }}" method="post">
+      <h1>Create new account<br><br> </h1>
+
+      <!-- First and Last Name in the same row -->
+      <div class="form-sign">
+        <div class="textbox">
+          <input type="text" placeholder="First Name" name="f_name" value="{{ f_name }}" required minlength="3"
+            pattern="[A-Za-z]+" title="Enter letters only" required>
+        </div>
+        <div class="textbox">
+          <input type="text" placeholder="Last Name" name="l_name" value="{{ l_name }}" required minlength="3"
+            pattern="[A-Za-z]+" title="Enter letters only" required>
+        </div>
+      </div>
+
+
+      <!-- Email and Telephone in separate rows -->
+      <div class="form-sign">
+        <div class="textbox">
+          <input type="text" placeholder="Email" name="email" value="{{ email }}"
+            title="Valid email (e.g., user@example.com)" required
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+        </div>
+      </div>
+      <div class="form-sign">
+        <div class="textbox">
+          <input type="tel" placeholder="Phone Number" name="tel_number" value="{{ tel_number }}" required
+          pattern="07[0-9]{9}" title="Enter a valid UK mobile number starting with 07 ">
+        </div>
+      </div>
+
+
+      <div class="form-sign">
+        <div class="textbox">
+          <input type="password" placeholder="Password" name="password" value="{{ password }}" required minlength="8"
+          maxlength="20"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\W_]{8,20}$"
+
+          title="Password must be 8-20 characters and include both letters and numbers">
+        
+        </div>
+      </div>
+
+      <div class="form-sign">
+        <div class="textbox">
+          <input type="password" placeholder="Confirm Password" name="confirm_password" value="{{ confirm_password }}"
+            required minlength="8" maxlength="20"
+           
+            title="Password must be 8-20 characters with letters and numbers">
+        </div>
+      </div>
+
+
+      {% if error_message %}
+      <div id="error-box">
+        <button onclick="closeErrorBox()">X</button>
+        <p>{{ error_message }}</p>
+      </div>
+      {% endif %}
+
+
+
+
+
+
+      <!-- Terms and Conditions -->
+      <p>I have read and agree with <a href="{{ url_for('about') }}">the Terms and Conditions and Privacy
+          Policy</a></p>
+
+
+      <!-- Submit Button -->
+      <div class="form-sign">
+        <input type="submit" id="btn" value="Register">
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='java.js') }}"></script>
+{% endblock %}
