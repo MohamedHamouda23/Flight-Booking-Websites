@@ -17,7 +17,6 @@ This project was originally developed as part of a university assignment at the 
 
 Horizon Travel is a sleek and user-friendly web application designed to simplify flight booking within the UK. Users can easily search for and book flights to various destinations with confidence and ease. The system prioritizes reliability and efficiency for a seamless travel experience.
 
-#                                        ------ ------ ------ ------ ------ ------
 ## Features
 
 
