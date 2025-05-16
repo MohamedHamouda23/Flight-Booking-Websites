@@ -1,4 +1,4 @@
-### 📚 About This Project
+# 📚 About This Project
 
 This project was originally developed as part of a university assignment at the University of the West of England (UWE) 🏫 and is now shared as part of my personal portfolio and resume.
 
@@ -9,7 +9,6 @@ This project was originally developed as part of a university assignment at the 
 👍 Feel free to use it for inspiration, learn from it, and use what you learn to build something even better!
 
 
-#                                        ------ ------ ------ ------ ------ ------
 
 
 # ✈️ Horizon Travel | Air Booking System
