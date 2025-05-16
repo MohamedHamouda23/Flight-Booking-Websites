@@ -1,5 +1,3 @@
-# Name: Mohamed Hammouda | Student ID: 23077543
-
 from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file
 import mysql.connector 
 from flask_bcrypt import Bcrypt 
