@@ -49,7 +49,6 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 📊 Display dynamic pricing based on Economy/Business class selection.
 ------
 
-#                                        ------ ------ ------ ------ ------ ------
 
 ### For Administrators  👨‍💻:
 
@@ -61,7 +60,6 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 📈 Include graphs for insights and expense comparisons.
 ------
 
-#                                        ------ ------ ------ ------ ------ ------
 
 # Data Validation & Security
 
