@@ -93,7 +93,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 ## 👤 Account page
 ![Account Screen](website/assets/Account.png)
 
-## 📅 Availability page
+## 📅 Availability page on phone screen
 ![Availability Screen](website/assets/Availability.png)
 
 ## 🛎️ Booking page
