@@ -1,5 +1,3 @@
-// Name: Mohamed Hammouda | Student ID: 23077543
-
 function closeErrorBox() {
   document.getElementById("box error-box").style.display = "none";
 }
