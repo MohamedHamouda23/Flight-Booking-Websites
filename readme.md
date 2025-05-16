@@ -26,7 +26,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 🔍 Show available flight routes based on user search (departure, destination, date).
 🔄 Allow users to change departure, destination, and date.
-
+------
 💺 Seat Selection & Availability:
 
 🎫 Let users choose between Economy and Business class.
@@ -73,7 +73,6 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 ------
 🔑 Session Management: Secure session handling using tokens to prevent unauthorized access, with automatic expiration after a set time or inactivity period.
 
-#                                        ------ ------ ------ ------ ------ ------
 
 # 💻 Technology
 
@@ -86,14 +85,12 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 📅 Flatpickr (Date picker calendar)
 📊 Chart.js (Graphs and reports)
 
-#                                        ------ ------ ------ ------ ------ ------
 
 # 🛠️ System Requirements
 
 🐍 Python 3.10.5+ (with pip3)
 🗄️ MySQL Server
 
-#                                        ------ ------ ------ ------ ------ ------
 
 # 📸 Screenshots
 
@@ -116,7 +113,6 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 ![Register Screen](website/assets/Register.png)
 
 
-#                                        ------ ------ ------ ------ ------ ------
 
 
 
@@ -150,7 +146,6 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 /usr/bin/mysql -u Username -p Horizon_travel < horizon_travel.sql
 
 
-#                                        ------ ------ ------ ------ ------ ------
 
 
 # 🚀Running the web Application
@@ -163,7 +158,6 @@ python3 app.py
 
 After starting the server, visit (http://127.0.0.1:5000) to access the web application.
 
-#                                        ------ ------ ------ ------ ------ ------
 
 # 🔐 Admin Access
 
@@ -171,6 +165,5 @@ After starting the server, visit (http://127.0.0.1:5000) to access the web appli
 🔑 Password: admin@@2
 
 
-#                                        ------ ------ ------ ------ ------ ------
 
 
