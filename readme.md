@@ -85,6 +85,19 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 #                                        ------ ------ ------ ------ ------ ------
 
+# screenshots
+
+
+Home page:
+![Uploading Screenshot 2025-05-16 at 9.42.24 PM.png…]()
+
+
+
+
+
+#                                        ------ ------ ------ ------ ------ ------
+
+
 
 ## Database Setup
 
