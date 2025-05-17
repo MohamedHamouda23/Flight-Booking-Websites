@@ -144,7 +144,9 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 ```
 /usr/local/mysql/bin/mysql -u Username -p -e "CREATE DATABASE IF NOT EXISTS \`Horizon_travel\`;"
+```
 
+```
 /usr/local/mysql/bin/mysql -u Username -p Horizon_travel < horizon_travel.sql
 ```
 
