@@ -155,16 +155,24 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 **<br>🪟Windows**
 
+```
 "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql" -u Username -p -e "CREATE DATABASE IF NOT EXISTS `Horizon_travel`;"
+```
 
+```
 "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql" -u Username -p Horizon_travel < horizon_travel.sql
+```
 
 
 **<br>🐧Linux** 
 
+```
 /usr/bin/mysql -u Username -p -e "CREATE DATABASE IF NOT EXISTS \`Horizon_travel\`;"
+```
 
+```
 /usr/bin/mysql -u Username -p Horizon_travel < horizon_travel.sql
+```
 
 <br>
 <br>
