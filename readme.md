@@ -181,9 +181,9 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 # start flask application
 
-cd website/flask
-
-python3 app.py
+```
+cd website/flask && python3 app.py
+```
 
 After starting the server, visit (http://127.0.0.1:5000) to access the web application.
 
