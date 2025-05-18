@@ -185,7 +185,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 https://github.com/MohamedHamouda23/Word-games
 ```
 
-### start flask application
+2. **start flask application**
 
 ```
 cd website/flask && python3 app.py
