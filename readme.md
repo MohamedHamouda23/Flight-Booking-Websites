@@ -179,7 +179,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 
 # 🚀Running the web Application
 
-# start flask application
+### start flask application
 
 ```
 cd website/flask && python3 app.py
