@@ -132,7 +132,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 <br>
 <br>
 
-# **Clone this repository:**
+# **🔄 Clone this repository:**
 
 ```bash
 https://github.com/MohamedHamouda23/Word-games
