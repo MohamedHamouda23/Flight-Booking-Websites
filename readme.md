@@ -132,6 +132,12 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 <br>
 <br>
 
+# **Clone this repository:**
+
+```bash
+https://github.com/MohamedHamouda23/Word-games
+```
+
 # 🗃️ Database Setup
 
 ### <br>🧱 First: Create the 'Horizon_travel' database if it doesn't exist
@@ -180,12 +186,7 @@ Horizon Travel is a sleek and user-friendly web application designed to simplify
 # 🚀Running the web Application
 
    
-1. **Clone this repository:**
-```bash
-https://github.com/MohamedHamouda23/Word-games
-```
-
-2. **start flask application**
+ **start flask application**
 
 ```
 cd website/flask && python3 app.py
